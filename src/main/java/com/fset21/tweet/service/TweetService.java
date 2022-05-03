@@ -1,5 +1,7 @@
 package com.fset21.tweet.service;
 
+import com.fset21.tweet.dto.TweetRequest;
+import com.fset21.tweet.exception.TweetException;
 import com.fset21.tweet.model.Tweet;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +10,20 @@ import java.util.List;
 @Service
 public interface TweetService {
 
-    List<Tweet> getAllTweets();
+    List<Tweet> getAllTweets() throws TweetException;
 
-    void addTweet(Tweet tweet);
+    void addTweet(TweetRequest tweetRequest, String username) throws TweetException;
 
-    void removeTweet(String tweetId);
+    Long removeTweet(String username,String id) throws TweetException;
 
-    Tweet editTweet(Tweet updatedTweet);
+    Tweet editTweet(TweetRequest updatedTweet,String username,String tweetId) throws TweetException;
+
+    Tweet likeTweet(String username,String tweetId) throws TweetException;
+
+    Tweet unlikeTweet(String username,String tweetId) throws TweetException;
+
+    Tweet replyTweet(TweetRequest updatedTweet,String username,String tweetId) throws TweetException;
+
+
 
 }
